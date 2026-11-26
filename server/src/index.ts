@@ -15,7 +15,11 @@ try {
     });
   }
 } catch (error) {
-  const { default: pino } = await import('pino');
-  pino().fatal({ err: error }, 'Unable to start server');
   process.exitCode = 1;
+  try {
+    const { default: pino } = await import('pino');
+    pino().fatal({ err: error }, 'Unable to start server');
+  } catch {
+    process.stderr.write('Unable to start server; fallback logger unavailable.\n');
+  }
 }

@@ -28,7 +28,7 @@ npm run build
 npm test
 ```
 
-Backend Mocha/Chai tests use the compiled server, so build before running tests. GitHub Actions runs these checks on PRs into develop and main. Pino records HTTP requests and errors; authorization and cookie headers are redacted. The server provides JSON 404 and error responses.
+Backend Mocha/Chai tests run TypeScript source through tsx. The pretest step also builds the server; typecheck includes source and tests. GitHub Actions runs these checks on PRs into develop and main. Pino records HTTP requests and errors; authorization and cookie headers are redacted. The server provides JSON 404 and error responses.
 
 ## Structure
 
